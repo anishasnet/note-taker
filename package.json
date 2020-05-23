@@ -1,0 +1,12 @@
+{
+  "name": "note-taker",
+  "version": "1.0.0",
+  "description": "This program uses both front end and back end so that users can create notes and save them on a server.",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
