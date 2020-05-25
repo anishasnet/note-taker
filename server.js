@@ -36,17 +36,34 @@ function checkNote (noteToCheck) {
 app.post('/api/notes', (req, res) => {
     let note = req.body;
     let allNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
-    //let noteId = (allNotes.length).toString();
+    let noteId = (allNotes.length).toString();
     if (checkNote(note) == false) {
         res.status(400).send('The note is invalid. Try again.');
     }
     else {
-        //note.id = noteId;
+        note.id = noteId;
         allNotes.push(note);
         fs.writeFileSync("./db/db.json", JSON.stringify(allNotes));
         res.json(allNotes);
     }
 });
+app.delete('/api/notes/:id', (req, res) => {
+    let allNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    let toDeleteId = req.params.id;
+    let newId = 0;
+    allNotes = allNotes.filter(note => {
+        return note.id != toDeleteId;
+    });
+
+    for (note of allNotes) {
+        note.id = newId.toString();
+        newId++
+    }
+    
+    fs.writeFileSync("./db/db.json", JSON.stringify(allNotes));
+    res.json(allNotes);
+});
+
 
 app.listen(PORT, () => {
     console.log(`App is listening on ${PORT}`);
