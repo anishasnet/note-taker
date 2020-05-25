@@ -22,10 +22,10 @@ app.get('/api/notes', (req, res) => {
 });
 
 function checkNote (noteToCheck) {
-    if (noteToCheck.title == null|| typeof noteToCheck.title !== 'string') {
+    if (!noteToCheck.title || typeof noteToCheck.title !== 'string') {
         return false; 
     }
-    if (noteToCheck.text == null|| typeof noteToCheck.text !== "string") {
+    if (!noteToCheck.text || typeof noteToCheck.text !== "string") {
         return false;
     }
     else {
@@ -36,7 +36,7 @@ function checkNote (noteToCheck) {
 app.post('/api/notes', (req, res) => {
     let note = req.body;
     let allNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
-    let noteId = (allNotes.length).toString();
+    //let noteId = (allNotes.length).toString();
     if (checkNote(note) == false) {
         res.status(400).send('The note is invalid. Try again.');
     }

@@ -1,15 +1,1 @@
-{
-  "listofnotes": [
-    [
-      {
-        "title": "Test Title",
-        "text": "Test text",
-        "id": "test_id"
-      }
-    ],
-    {
-      "title": "new notes to write title",
-      "text": "conte conte content"
-    }
-  ]
-}
+[{"title":"Test Title","text":"Test text","id":"test_id"},{"title":"How are you","text":"this is a test"},{"title":"test","text":"test"},{"title":"DOES IT STy","text":"yes it does\n"}]
