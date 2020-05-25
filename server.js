@@ -1,5 +1,4 @@
 /* Dependencies */
-
 const express = require('express');
 const fs = require('fs');
 const path = require('path'); 
@@ -28,7 +27,6 @@ app.get('/api/notes', (req, res) => {
 });
 
 /* Checks if note has valid content */
-
 function checkNote (noteToCheck) {
     if (!noteToCheck.title || typeof noteToCheck.title !== 'string') {
         return false; 
