@@ -7,14 +7,14 @@ const PORT = process.env.PORT || 3001;
 
 app.use(express.urlencoded ( { extended: true }));
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, "/public")));
 
 app.get('/notes', (req,res) => {
-    res.sendFile(path.join(__dirname, "./public/notes.html"))
+    res.sendFile(path.join(__dirname, "public/notes.html"))
 });
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,'./public/index.html'));
+    res.sendFile(path.join(__dirname, "public/index.html"));
 }); 
 
 app.get('/api/notes', (req, res) => {
@@ -36,7 +36,7 @@ function checkNote (noteToCheck) {
 app.post('/api/notes', (req, res) => {
     let note = req.body;
     let allNotes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
-    //let noteId = (allNotes.length).toString();
+    let noteId = (allNotes.length).toString();
     if (checkNote(note) == false) {
         res.status(400).send('The note is invalid. Try again.');
     }
@@ -44,7 +44,7 @@ app.post('/api/notes', (req, res) => {
         //note.id = noteId;
         allNotes.push(note);
         fs.writeFileSync("./db/db.json", JSON.stringify(allNotes));
-        res.json(note);
+        res.json(allNotes);
     }
 });
 
