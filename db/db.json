@@ -1,1 +1,15 @@
-[{"title":"Test Title","text":"Test text", "id": "test_id"}]
+{
+  "listofnotes": [
+    [
+      {
+        "title": "Test Title",
+        "text": "Test text",
+        "id": "test_id"
+      }
+    ],
+    {
+      "title": "new notes to write title",
+      "text": "conte conte content"
+    }
+  ]
+}
